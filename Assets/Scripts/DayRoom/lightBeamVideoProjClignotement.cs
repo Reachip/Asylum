@@ -17,6 +17,7 @@ public class lightBeamVideoProjClignotement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         lightBeam.intensity = rnd.Next(1,9);
     }
 }
