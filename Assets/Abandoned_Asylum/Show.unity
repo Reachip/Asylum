@@ -2055,7 +2055,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -2070,7 +2070,7 @@ Transform:
   m_GameObject: {fileID: 852002839}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 25.736, y: 3.783, z: -19.3236}
-  m_LocalScale: {x: 1, y: 0.78702, z: 1}
+  m_LocalScale: {x: 0.82197, y: 0.78702, z: 1}
   m_Children:
   - {fileID: 302414354}
   - {fileID: 1111655986}
@@ -2092,9 +2092,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 852002840}
   groundCheck: {fileID: 1769775507}
-  speed: 12
-  gravity: -9.81
+  speed: 10
+  gravity: -19.62
   groundDistance: 0.4
+  jumpHeight: 1
   groundMask:
     serializedVersion: 2
     m_Bits: 256
@@ -2561,7 +2562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767d09f6780022e4ea8fbbbd022173ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
+  mouseSensitivity: 150
   playerBody: {fileID: 852002841}
 --- !u!81 &1111655988
 AudioListener:
