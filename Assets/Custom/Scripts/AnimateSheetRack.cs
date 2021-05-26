@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimateSheetRack : MonoBehaviour
-{ 
+{
+    public static bool trigger = false;
     public float seconds = 1;
     public float timer;
     Vector3 startpos;
@@ -23,11 +24,15 @@ public class AnimateSheetRack : MonoBehaviour
 
     void Update()
     {
-        if (timer <= seconds)
+        if (trigger == true)
         {
-            timer += Time.deltaTime;
-            percent = timer / seconds;
-            transform.position = startpos + diff * percent;
+            if (timer <= seconds)
+            {
+                timer += Time.deltaTime;
+                percent = timer / seconds;
+                transform.position = startpos + diff * percent;
+            }
         }
+
     }
 }
