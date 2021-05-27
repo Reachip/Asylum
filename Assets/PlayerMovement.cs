@@ -19,10 +19,16 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     public LayerMask groundMask;
     bool isGrounded;
+    AudioSource sound;
+
+    public float stepRate = 0.5f;
+    public float stepRateRunning = 0.3f;
+    public float stepCoolDown;
 
     // Start is called before the first frame update
     void Start()
     {
+        sound = gameObject.GetComponent<AudioSource>();
         if (File.Exists(saveFile))
         {
             using (StreamReader reader = File.OpenText(saveFile))
@@ -39,7 +45,26 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        stepCoolDown -= Time.deltaTime;
+        if((Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f) && stepCoolDown < 0f)
+        {
+            sound.pitch = 1f + Random.Range(-0.2f, 0.2f);
+            sound.Play();
+            
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                stepCoolDown = stepRateRunning;
+
+            }
+            else
+            {
+                stepCoolDown = stepRate;
+            }
+        }
+
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
 
         if (isGrounded && velocity.y < 0)
         {
