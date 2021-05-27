@@ -54,13 +54,6 @@ public class rayCast : MonoBehaviour
                                 foreach(Animator obj in hit.transform.parent.GetComponentsInChildren<Animator>())
                                 {
                                     obj.SetBool("ouvre", true);
-                                   
-                                    if(obj.name == "DoorD_V2_Left" || obj.name == "DoorD_V2_Right")
-                                    {
-                                        Debug.Log("Je capte les deux portes");
-
-                                        //obj.GetComponent<pivot_door_open>().ouvre = true;
-                                    }
                                 }
                             }
                         }
