@@ -30,7 +30,7 @@ public class rayCast : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Debug.Log(hit.transform.gameObject.ToString());
+                //Debug.Log(hit.transform.gameObject.ToString());
                 if (hit.collider.gameObject.name == "KettleSphereCollider")
                 {
                     UiText.text = "Appuyez sur E pour prendre " + hit.transform.parent.gameObject.name;
@@ -38,7 +38,7 @@ public class rayCast : MonoBehaviour
                         UiText.text = "Vous avez pris la clé";
                         keys.Add(hit.transform.parent.gameObject);
                         hit.transform.parent.gameObject.SetActive(false);
-                        Debug.Log(keys.Count);
+                        //Debug.Log(keys.Count);
                     }
                 }else if(hit.collider.gameObject.name == "DoorTriggerBox")
                 {
@@ -50,7 +50,7 @@ public class rayCast : MonoBehaviour
                         {
                             if(key.name.Substring(5) == hit.transform.parent.gameObject.name.Substring(5))
                             {
-                                Debug.Log("Il as la bonne clé");
+                                //Debug.Log("Il as la bonne clé");
                                 foreach(Animator obj in hit.transform.parent.GetComponentsInChildren<Animator>())
                                 {
                                     obj.SetBool("ouvre", true);
