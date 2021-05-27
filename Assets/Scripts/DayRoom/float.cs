@@ -13,7 +13,7 @@ public class teaPouring : MonoBehaviour
     Vector3 posOffset = new Vector3();
     Vector3 tempPos = new Vector3();
 
-    //bool goToCup = false;
+    bool goToCup = false;
     // Start is called before the first frame update
     void Start()
     {
