@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.81f;
     public float groundDistance = 0.4f;
     public float jumpHeight = 3f;
+    private string saveFile = "P:\\save.asylum.txt";
 
     Vector3 velocity;
     public LayerMask groundMask;
@@ -21,7 +23,17 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (File.Exists(saveFile))
+        {
+            using (StreamReader reader = File.OpenText(saveFile))
+            {
+                char[] separator = " ".ToCharArray();
+                string[] coordinatesSplit = reader.ReadLine().Split(separator);
+                transform.position = new Vector3(float.Parse(coordinatesSplit[0]), float.Parse(coordinatesSplit[1]), float.Parse(coordinatesSplit[2]));
+            }
+        }
+
+        StartCoroutine(DoEvery10Seconds());
     }
 
     // Update is called once per frame
@@ -29,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if(isGrounded && velocity.y < 0)
+        if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
@@ -52,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
@@ -61,5 +73,21 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    void SaveProgesssion()
+    {
+        using (StreamWriter writer = File.CreateText(saveFile))
+        {
+            writer.WriteLine($"{transform.position.x} {transform.position.y} {transform.position.z}");
+        }
+    }
+
+    IEnumerator DoEvery10Seconds()
+    {
+
+        yield return new WaitForSeconds(10);
+        SaveProgesssion();
+        StartCoroutine(DoEvery10Seconds());
     }
 }
