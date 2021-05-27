@@ -26,7 +26,6 @@ public class EnemyFollow : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.LogWarning("TOUCH");
             anim.SetBool("colid", true);
         }
     }
