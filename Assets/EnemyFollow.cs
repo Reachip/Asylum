@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class EnemyFollow : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class EnemyFollow : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            anim.SetBool("colid", true);
+           StartCoroutine(CollisionAction());
         }
     }
 
@@ -36,5 +37,12 @@ public class EnemyFollow : MonoBehaviour
         {
             anim.SetBool("colid", false);
         }
+    }
+
+    IEnumerator CollisionAction()
+    {
+        anim.SetBool("colid", true);
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("GameOver");
     }
 }
