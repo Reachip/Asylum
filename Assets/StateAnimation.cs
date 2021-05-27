@@ -24,7 +24,7 @@ public class StateAnimation : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            anim.SetBool("crounch", true);
+            anim.SetBool("colid", true);
         }
     }
 
