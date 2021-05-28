@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class TriggerBoxFin : MonoBehaviour
+public class WinnerScript : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("Bite");
+        StartCoroutine(waiter());
     }
 
     // Update is called once per frame
@@ -17,12 +17,9 @@ public class TriggerBoxFin : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    IEnumerator waiter()
     {
-        if (other.CompareTag("Player"))
-        {
-            SceneManager.LoadScene("Winner");
-            
-        }
+        yield return new WaitForSeconds(5);
+        Application.Quit();
     }
 }
