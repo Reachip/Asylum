@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Custom/Scene/Menu.unity
+    path: Assets/Scene/Menu.unity
     guid: 0fbf6f8404c3b984bbb92c0a501d4fea
   - enabled: 1
-    path: Assets/Abandoned_Asylum/Show.unity
+    path: Assets/Scene/Show.unity
     guid: 30fb6719a9eb1d84a807a42d598b16f8
   - enabled: 1
-    path: Assets/Custom/Scene/GameOver.unity
+    path: Assets/Scene/GameOver.unity
     guid: 964624b3a301db440ba066b8a338cdad
   - enabled: 1
-    path: Assets/Custom/Scene/Winner.unity
+    path: Assets/Scene/Winner.unity
     guid: a3cbd722e114e824181281bb0016d017
   m_configObjects: {}
