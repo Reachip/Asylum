@@ -10,18 +10,29 @@ public class EnemyFollow : MonoBehaviour
     public NavMeshAgent enemy;
     public Transform player;
     private Animator anim;
+    AudioSource sound;
+
+    private float soundRange = 6;
 
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        sound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {     
+        var dist = Vector3.Distance(player.transform.position, transform.position);
+        if(dist <= soundRange && sound.isPlaying == false)
+        {
+            sound.Play();
+        }
+
         enemy.SetDestination(player.position);
+
     }
 
     private void OnCollisionEnter(Collision collision)
