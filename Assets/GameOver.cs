@@ -8,7 +8,6 @@ public class GameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -19,7 +18,7 @@ public class GameOver : MonoBehaviour
 
     public void Menu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Show");
     }
 
     public void Quitter()
