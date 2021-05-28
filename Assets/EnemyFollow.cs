@@ -54,7 +54,7 @@ public class EnemyFollow : MonoBehaviour
     IEnumerator CollisionAction()
     {
         anim.SetBool("colid", true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene("GameOver");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
