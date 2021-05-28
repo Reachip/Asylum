@@ -7,6 +7,7 @@ public class rayCast : MonoBehaviour
 {
 
     private Text UiText;
+    private Text ItemTakenText;
 
     private List<GameObject> keys = new List<GameObject>();
 
@@ -15,7 +16,8 @@ public class rayCast : MonoBehaviour
     void Start()
     {
         UiText = GameObject.Find("ActionsText").GetComponent<Text>();
-
+        ItemTakenText = GameObject.Find("LastItemText").GetComponent<Text>();
+        ItemTakenText.text = "";
     }
 
 
@@ -33,9 +35,9 @@ public class rayCast : MonoBehaviour
                 
                 if (hit.collider.gameObject.name == "KettleSphereCollider" && hit.distance < 1.8)
                 {
-                    UiText.text = "Appuyez sur E pour prendre " + hit.transform.parent.gameObject.name;
+                    UiText.text = "Appuyez sur E pour prendre " + hit.transform.parent.gameObject.name.Substring(0,4) + " " + hit.transform.parent.gameObject.name.Substring(5);
                     if (Input.GetKeyDown(KeyCode.E)){
-                        UiText.text = "Vous avez pris la clé";
+                        ItemTakenText.text = "Vous avez pris la clé " + hit.transform.parent.gameObject.name.Substring(5);
                         keys.Add(hit.transform.parent.gameObject);
                         hit.transform.parent.gameObject.SetActive(false);
                         
@@ -43,7 +45,7 @@ public class rayCast : MonoBehaviour
                 }else if(hit.collider.gameObject.name == "DoorTriggerBox" && hit.distance < 1.8)
                 {
                     
-                    UiText.text = "Appuyez sur E pour ouvrir " + hit.transform.parent.gameObject.name;
+                    UiText.text = "Appuyez sur E pour ouvrir la porte " + hit.transform.parent.gameObject.name.Substring(5);
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         
@@ -51,11 +53,13 @@ public class rayCast : MonoBehaviour
                         {
                             if(key.name.Substring(5) == hit.transform.parent.gameObject.name.Substring(5))
                             {
-                                //Debug.Log("Il as la bonne clé");
+                                
                                 foreach(Animator obj in hit.transform.parent.GetComponentsInChildren<Animator>())
                                 {
                                     obj.SetBool("ouvre", true);
                                 }
+
+                                Destroy(hit.transform.gameObject);
                             }
                         }
                     }
