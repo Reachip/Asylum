@@ -30,18 +30,19 @@ public class rayCast : MonoBehaviour
 
             if (hit.collider != null)
             {
-                //Debug.Log(hit.transform.gameObject.ToString());
-                if (hit.collider.gameObject.name == "KettleSphereCollider")
+                
+                if (hit.collider.gameObject.name == "KettleSphereCollider" && hit.distance < 1.8)
                 {
                     UiText.text = "Appuyez sur E pour prendre " + hit.transform.parent.gameObject.name;
                     if (Input.GetKeyDown(KeyCode.E)){
                         UiText.text = "Vous avez pris la clé";
                         keys.Add(hit.transform.parent.gameObject);
                         hit.transform.parent.gameObject.SetActive(false);
-                        //Debug.Log(keys.Count);
+                        
                     }
-                }else if(hit.collider.gameObject.name == "DoorTriggerBox")
+                }else if(hit.collider.gameObject.name == "DoorTriggerBox" && hit.distance < 1.8)
                 {
+                    
                     UiText.text = "Appuyez sur E pour ouvrir " + hit.transform.parent.gameObject.name;
                     if (Input.GetKeyDown(KeyCode.E))
                     {
