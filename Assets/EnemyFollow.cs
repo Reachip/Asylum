@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -44,5 +45,8 @@ public class EnemyFollow : MonoBehaviour
         anim.SetBool("colid", true);
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene("GameOver");
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        File.Delete("P:\\save.asylum.txt");
     }
 }
